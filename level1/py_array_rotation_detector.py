@@ -20,7 +20,7 @@ def array_rotation_detector(arr1: list, arr2:list)-> bool:
     arr2_d = arr2 + arr2
 
     for i in range(len(arr2_d)):
-        if arr2_d[i:i+len(arr1)] ==arr1:
+        if arr2_d[i:i+len(arr1)] == arr1:
             return True
     return False
 
