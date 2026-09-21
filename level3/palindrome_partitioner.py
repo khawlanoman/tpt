@@ -1,26 +1,22 @@
-def palindrome_partitioner(s: str) -> int:
-    flag = 0
-    new_list = s[::-1]
+def py_palindrome_partitioner(s: str) -> int:
+    n = len(s)
 
-    if new_list == s or  not s:
-        flag = 1
-    else:
-        flag = 0
-    
-    count_par = 0
-    list_par = []
-    if flag == 1 :
-        return  0 
-    else:
-        sub = ""
-        count_par = 0
-        for i in s:
-            sub += i
+    if n <= 1:
+        return 0
+
+    dp = [0] * n
+
+    for i in range(n):
+        dp[i] = i
+
+        for j in range(i + 1):
+            sub = s[j:i + 1]
+
             if sub == sub[::-1]:
-                count_par += 1
-                list_par.append(count_par)
-        print(sub, sub[::-1])
-        min_lt  = min(list_par)
-        return min_lt
+                if j == 0:
+                    dp[i] = 0
+                else:
+                    dp[i] = min(dp[i], dp[j - 1] + 1)
 
+    return dp[n - 1]
 print(palindrome_partitioner("abc"))
